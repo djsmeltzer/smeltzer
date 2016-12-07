@@ -1,0 +1,101 @@
+@bubble_size: 1.5em;
+
+body {
+    padding: 0em;
+    margin: 0em;
+}
+
+nav {
+    background: black;
+    color: white;
+    float: left;
+    position: fixed;
+    right: 100%;
+
+    &:after {
+        cursor: pointer;
+        background: black;
+        padding: 0.1em;
+        content: '+';
+        display: inline-block;
+        line-height: 0.8;
+        font-size: 200%;
+        font-weight: bold;
+        position: absolute;
+        top: 0em;
+        left: 100%;
+
+        &:hover:root nav {
+            left: 0px;
+        }
+    }
+    
+    &:hover {
+        left: 0px;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0em;
+        padding: 0.3em;
+
+        li {
+            clear: left;
+            display: inline-block;
+            float: left;
+
+            a {
+                padding: 0.3em;
+                text-decoration: none;
+
+                &:visited, 
+                &:link,
+                &:active {
+                    color: white;
+                }
+
+                &:hover {
+                    color: greenyellow;
+                    text-shadow: 0px 0px 3px yellow;
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+.bubble {
+    -webkit-background-clip: padding-box;
+    margin: 30px;
+    height: @bubble_size;
+    width: @bubble_size;
+    background-image: radial-gradient(@bubble_size at 45% 30%, #fff 0%, #fff 5%, lime 10%, darkgreen 60%, darken(darkgreen, 10%) 100%);
+    border-radius: 50%;
+ //   box-shadow: inset -0.1em -0.2em 1.5em rgba(0, 0, 0, 0.70);
+
+    box-shadow: inset -(@bubble_size / 30) -(@bubble_size / 15) (@bubble_size / 2) rgba(0, 0, 0, 0.70),
+                inset -(@bubble_size / 30) -(@bubble_size / 15) (@bubble_size / 3) #000,
+                (@bubble_size / 30) (@bubble_size / 10) (@bubble_size * 0.08333) rgba(55, 55, 55, 0.9),
+                (@bubble_size / 20) (@bubble_size / 10) (@bubble_size / 6) #000;
+}
+
+.lines {
+    border: 1px solid #999;
+    background: lightgoldenrodyellow;
+    color: #333;
+    font-family: "Josefin Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: inline-block;
+    margin: 2em;
+    padding: 0.85em;
+/*
+    box-shadow: 0px 5px 0px #fff,
+                0px 6px 1px -1px #0f0,
+                0px 10px 0px #fff,
+                0px 11px 1px -1px #f00;*/
+    box-shadow: 0px 4px 8px -1px #333,
+                inset 0px 0px 2em -0.5em saddlebrown;
+
+}

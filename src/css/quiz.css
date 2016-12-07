@@ -1,0 +1,62 @@
+.question {
+  display: inline-block;
+  left: 100%;
+  position: absolute;
+  text-align: center;
+  top: 0px;
+  -webkit-transition: left 0.7s ease-out;
+  transition: left 0.7s ease-out;
+  -webkit-transition-delay: 1.3s;
+          transition-delay: 1.3s;
+  width: 100%;
+}
+.current {
+  left: 0%;
+}
+.answered {
+  left: -100%;
+  -webkit-transition: left 0.7s ease-in;
+  transition: left 0.7s ease-in;
+  -webkit-transition-delay: 1.3s;
+          transition-delay: 1.3s;
+}
+.answered .answer {
+  cursor: default;
+  opacity: 0;
+  -webkit-transition: opacity 0.5s, visibility 0.5s;
+  transition: opacity 0.5s, visibility 0.5s;
+  visibility: hidden;
+}
+.answered .chosen {
+  background: maroon;
+  box-shadow: 0px 0px 12px orange, 0px 0px 8px gold, 0px 0px 5px wheat;
+  color: white;
+  opacity: 1;
+  visibility: visible;
+}
+.answered .chosen:hover {
+  background: maroon;
+}
+.answerList {
+  display: inline-block;
+  max-width: 70%;
+  position: relative;
+}
+.answer {
+  border: 1px solid maroon;
+  border-radius: 6px;
+  clear: left;
+  cursor: pointer;
+  float: left;
+  margin: 5px 0px;
+  padding: 4px 8px;
+  position: relative;
+  width: 100%;
+}
+.answer:hover {
+  background: lightpink;
+}
+.answer:active {
+  background: maroon;
+  color: white;
+}

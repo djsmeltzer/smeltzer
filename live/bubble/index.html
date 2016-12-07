@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WMQPW9');</script>
+	<!-- End Google Tag Manager -->
+	<title>Game</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/game.css">
+	<script src="js/yepnope.1.5.4-min.js"></script>
+	<script src="js/modernizr.js"></script>
+	<script>
+console.log("before yepnope");
+yepnope([
+	{
+		load: "//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.js",
+		complete: function() {
+			if (!window.jquery) {
+				yepnope("js/jquery-1.8.2.min.js");
+			}
+		}
+	},
+	"js/ui.js",
+	"js/bubble.js",
+	"js/board.js",
+	"js/collision-detector.js",
+	{
+		load: "js/game.js",
+		complete: function() {
+			$(function(){
+				var game = new BubbleShoot.Game();
+				game.init();
+			});
+		}
+	}
+]);
+	</script>
+</head>
+
+<body>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMQPW9" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+	</noscript>
+	<!-- End Google Tag Manager (noscript) -->
+	<div id="page">
+		<div id="top_bar"></div>
+		<div id="game">
+			<div id="board"></div>
+			<div id="bubbles_remaining"></div>
+		</div>
+		<div id="footer_bar"></div>
+		<div id="start_game" class="dialog">
+			<div id="start_game_message">
+				<h2>Start a new game</h2>
+			</div>
+			<div class="but_start_game button">
+				New Game
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+ul li {
+    margin: 1.5em auto;
+}
+
+.btn {
+    font-family: Roboto,sans-serif;
+    display: inline-block;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 0px #fff;
+    transition: box-shadow 0.3s, transform 0.3s;
+    &:hover {
+        box-shadow: 0px 2px 3px #ccc;
+        cursor: pointer;
+        transform: translateY(-1px);
+    }
+    &:active {
+        background-color: darken(#fff, 3%);
+    }
+}
+
+.green {
+    background-color: #145714;
+    color: white;
+    &:hover {
+        box-shadow: 0px 2px 3px #666;
+    }
+    &:active {
+        background-color: darken(#145714, 4%);
+    }
+    .inner&:hover {
+        box-shadow: inset 0px 2px 3px darken(#145714, 10%);
+    }
+}
+
+.inner {
+    box-shadow: inset 0px 0px 0px #fff;
+    &:hover {
+        transform: translateY(1px);
+        box-shadow: inset 0px 2px 3px #ccc;
+    }
+}
