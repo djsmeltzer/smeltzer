@@ -28,21 +28,23 @@ gulp.task("browserSync", function() {
 
 gulp.task('build', ['less'], function() {
     gulp.src("src/**/*.html")
-    .pipe(gulp.dest('live'));
+    .pipe(gulp.dest('dist'));
+    gulp.src("src/bubble/**/*")
+        .pipe(gulp.dest('dist/bubble'));
     gulp.src("src/images/**/*.{jpg,jpeg,gif,png}")
-    .pipe(gulp.dest('live/images'));
+    .pipe(gulp.dest('dist/images'));
     return gulp.src("src/css/**/*.css")
     .pipe(nano())
-    .pipe(gulp.dest("live/css"));
+    .pipe(gulp.dest("dist/css"));
 })
 
 gulp.task('push:live', ['build'], function () {
-    return gulp.src("live/**")
+    return gulp.src("dist/**")
     .pipe(rsync({
         hostname: "smeltzer",
         username: "serenity",
         destination: "public_html",
-        root: "live/",
+        root: "dist/",
         silent: false,
         archive: true,
         compress: true,
