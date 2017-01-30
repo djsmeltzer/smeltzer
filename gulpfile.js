@@ -4,6 +4,7 @@ var nano = require("gulp-cssnano");
 var autoprefix = require("gulp-autoprefixer");
 var browserSync = require("browser-sync");
 var rsync = require("gulp-rsync");
+var sitemap = require("gulp-sitemap");
 
 gulp.task('less', function() {
     return gulp.src("src/less/**/*.less")
@@ -26,16 +27,28 @@ gulp.task("browserSync", function() {
     })
 });
 
-gulp.task('build', ['less'], function() {
+gulp.task('build', ['less', 'sitemap'], function() {
     gulp.src("src/**/*.html")
     .pipe(gulp.dest('dist'));
     gulp.src("src/bubble/**/*")
         .pipe(gulp.dest('dist/bubble'));
     gulp.src("src/images/**/*.{jpg,jpeg,gif,png}")
     .pipe(gulp.dest('dist/images'));
+    gulp.src("src/robots.txt")
+    .pipe(gulp.dest("dist"));
     return gulp.src("src/css/**/*.css")
     .pipe(nano())
     .pipe(gulp.dest("dist/css"));
+})
+
+gulp.task('sitemap', function() {
+    gulp.src('src/**/*.html', {
+        read: false
+    })
+    .pipe(sitemap({
+        siteUrl: 'https://smeltzer.net'
+    }))
+    .pipe(gulp.dest('dist'));
 })
 
 gulp.task('push:live', ['build'], function () {

@@ -1,9 +1,41 @@
+@bgcolor: #666673;
+
+body {
+    margin: 0em;
+    background: @bgcolor;
+    font-family: 'Titillium Web', Arial, sans-serif;
+}
+
+header, footer, section {
+    display: block;
+    margin: 0em;
+}
+
+header {
+    background: maroon;
+    height: 1.5em;
+}
+
+footer {
+    background: darkslategray;
+    height: 2em;
+}
+
+.main {
+    background: white;
+    padding: 3em;
+
+    h1 {
+        color: @bgcolor;
+    }
+}
+
 ul li {
     margin: 1.5em auto;
 }
 
 .btn {
-    font-family: Roboto,sans-serif;
+    font-family: Roboto, sans-serif;
     display: inline-block;
     padding: 5px;
     margin: 10px;

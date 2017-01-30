@@ -1,0 +1,4 @@
+Sitemap: http://smeltzer.net/sitemap.xml
+
+User-agent: *
+Disallow: /cgi-bin/
