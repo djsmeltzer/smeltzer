@@ -1,0 +1,101 @@
+@leftWidth: 320px;
+@rightWidth: 704px;
+
+body, html, div {
+    margin: 0em;
+    padding: 0em;
+    box-sizing: border-box;
+    border: 0em;
+}
+
+.full {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    width: 1024px;
+    margin: 0em auto;
+    background-color: rgba(0, 0, 196, 0.3);
+}
+
+.row {
+    position: relative;
+}
+
+.rowLeft {
+    margin-left: -50%;
+    padding-left: 50%;
+    background-color: black;
+}
+
+.rowRight {
+    margin-right: -50%;
+    padding-right: 50%;
+    background-color: black;
+}
+
+.checkerSquare {
+    min-height: 200px;
+    display: inline-block;
+}
+
+.checkerSquareLeft {
+    width: @leftWidth;
+}
+
+.checkerSquareRight {
+    width: @rightWidth;
+    margin-left: -4px;
+}
+
+.checkerSquareBlack {
+    background: black;
+    color: white;
+}
+
+.checkerSquareWhite {
+    background: white;
+    color: black;
+}
+
+.upperLeft {
+    .checkerSquare;
+    .checkerSquareLeft;
+    .checkerSquareBlack;
+}
+
+.upperRight {
+    .checkerSquare;
+    .checkerSquareRight;
+    .checkerSquareWhite;
+}
+
+.lowerLeft {
+    .checkerSquare;
+    .checkerSquareLeft;
+    .checkerSquareWhite;
+}
+
+.lowerRight {
+    .checkerSquare;
+    .checkerSquareRight;
+    .checkerSquareBlack;
+}
+
+.buffer {
+    maring-top: 3em;
+}
+
+.ulBefore {
+    position: relative;
+
+    &:before {
+        content: '';
+        position: absolute;
+        right: 100%;
+        background: black;
+        height: 100%;
+        width: 5000px;
+    }
+}
