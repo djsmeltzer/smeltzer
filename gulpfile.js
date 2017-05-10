@@ -1,5 +1,6 @@
 var gulp = require("gulp");
 var less = require("gulp-less");
+var sass = require("gulp-sass");
 var nano = require("gulp-cssnano");
 var autoprefix = require("gulp-autoprefixer");
 var browserSync = require("browser-sync");
@@ -13,8 +14,16 @@ gulp.task('less', function() {
     .pipe(gulp.dest("src/css"));
 });
 
-gulp.task("watch", ["browserSync"], function() {
+gulp.task('sass', function() {
+    return gulp.src("src/sass/**/*.scss")
+        .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefix())
+        .pipe(gulp.dest("src/css"));
+});
+
+gulp.task("watch", ["browserSync", "less", "sass"], function() {
     gulp.watch("src/less/**/*.less", ['less']);
+    gulp.watch("src/sass/**/*.scss", ['sass']);
     gulp.watch("src/**/*.{html,css,js}", browserSync.reload);
 })
 
@@ -22,13 +31,13 @@ gulp.task("browserSync", function() {
     browserSync.init({
         server: {
             baseDir: 'src',
-            index: 'controls.html'
+            index: 'test-sass.html'
         }
     })
 });
 
 gulp.task('build', ['less', 'sitemap'], function() {
-    gulp.src("src/**/*.html")
+    gulp.src("src/**/*.{html,php}")
     .pipe(gulp.dest('dist'));
     gulp.src("src/bubble/**/*")
         .pipe(gulp.dest('dist/bubble'));
@@ -55,7 +64,7 @@ gulp.task('push:live', ['build'], function () {
     return gulp.src("dist/**")
     .pipe(rsync({
         hostname: "smeltzer",
-        username: "serenity",
+        username: "smeltzer",
         destination: "public_html",
         root: "dist/",
         silent: false,

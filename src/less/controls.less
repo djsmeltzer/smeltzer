@@ -1,11 +1,16 @@
-.btn {
+.btn span {
     background: darkgray;
     color: yellow;
     border-radius: 5px;
-    display: inline-block;
-    padding: 0.4em;
+    display: block;
+    padding: 1em;
+    margin: 0.5em;
 }
 
-.rdo:checked + label {
-    border: 1px solid red;
+.btn input {
+    display: none;
+}
+
+:checked + span {
+    background: green;
 }
