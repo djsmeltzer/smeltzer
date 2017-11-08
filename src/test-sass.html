@@ -21,6 +21,11 @@
         </ul>
     </section>
     <div class="container">
+        <h3>Context menu test</h3>
+        <a href="" class="btn btn-primary touchme">Touch this</a>
+    </div>
+
+    <div class="container">
         <div class="article">
             <h1>This is a title</h1>
             <p>This is some text to consider</p>
@@ -58,5 +63,59 @@
         </div>
     </div>
 </div>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+<script>
+    // Timer for long touch detection
+var timerLongTouch;
+// Long touch flag for preventing "normal touch event" trigger when long touch ends
+var longTouch = false;
+
+$(".touchme")
+  .on("touchstart", function(event){
+      // Prevent default behavior
+      event.preventDefault();
+      // Test that the touch is correctly detected
+    //   alert("touchstart event");
+      // Timer for long touch detection
+      timerLongTouch = setTimeout(function() {
+          // Flag for preventing "normal touch event" trigger when touch ends. 
+          longTouch = true;
+          // Test long touch detection (remove previous alert to test it correctly)
+          alert("long mousedown");
+      }, 1000);
+  })
+  .on("touchmove", function(event){
+      // Prevent default behavior
+      event.preventDefault();
+      // If timerLongTouch is still running, then this is not a long touch 
+      // (there is a move) so stop the timer
+      clearTimeout(timerLongTouch);
+
+      if(longTouch){
+          longTouch = false;
+          // Do here stuff linked to longTouch move
+      } else {
+          // Do here stuff linked to "normal" touch move
+      }
+  })
+  .on("touchend", function(){
+      // Prevent default behavior
+      event.preventDefault();
+      // If timerLongTouch is still running, then this is not a long touch
+      // so stop the timer
+      clearTimeout(timerLongTouch);
+
+      if(longTouch){
+          longTouch = false;
+          // Do here stuff linked to long touch end 
+          // (if different from stuff done on long touch detection)
+      } else {
+          // Do here stuff linked to "normal" touch move
+      }
+  });
+</script>
 </body>
 </html>

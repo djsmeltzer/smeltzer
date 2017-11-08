@@ -24,7 +24,7 @@ gulp.task('sass', function() {
 gulp.task("watch", ["browserSync", "less", "sass"], function() {
     gulp.watch("src/less/**/*.less", ['less']);
     gulp.watch("src/sass/**/*.scss", ['sass']);
-    gulp.watch("src/**/*.{html,css,js}", browserSync.reload);
+    gulp.watch("src/**/*.{html,css,js,php}", browserSync.reload);
 })
 
 gulp.task("browserSync", function() {
@@ -36,7 +36,7 @@ gulp.task("browserSync", function() {
     })
 });
 
-gulp.task('build', ['less', 'sitemap'], function() {
+gulp.task('build', ['less', 'sitemap', 'sass'], function() {
     gulp.src("src/**/*.{html,php}")
     .pipe(gulp.dest('dist'));
     gulp.src("src/bubble/**/*")

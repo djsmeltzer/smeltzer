@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <title>Page title</title>
+    <meta charset='utf8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    This is my test for onbeforeunload to see if it can do what I want.<br>
+    <a href="index.html">A link to test</a>
+</body>
+<script>
+window.addEventListener("onbeforeunload", function(e) {
+    console.dir(e);
+    alert(e);
+    testme(e);
+    e.preventDefault();
+    return 'This is a test';
+});
+
+function testme(e) {
+    e.preventDefault();
+    console.dir(e);
+}
+</script>
+</html>

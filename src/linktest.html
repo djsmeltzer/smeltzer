@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <title>Page title</title>
+    <meta charset='utf8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <p>This is a test to see how to carry URL parameters on links.</p>
+    <a href='panda.html'>Test link</a><br>
+    <div class='pagination'>
+        <ul>
+            <li>
+                <a class='pagination somethingelse' href='panda.html'>Test link</a><br>
+            </li>
+            <li>
+                <a href='panda.html'>Test link</a><br>
+            </li>
+        </ul>
+    </div>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+<script>
+console.log('code running');
+console.log(window.location.search);
+document.addEventListener('click', function(e) {
+    console.log('click');
+    // e.preventDefault();
+    console.dir(e);
+    console.log(e.target.localName);
+    if (e.target.localName == 'a') {
+        console.log('link');
+        console.log(e.target.className);
+        if ($(e.target).closest('.pagination').length > 0) {
+            console.log('pagination');
+            e.preventDefault();
+        } else {
+            console.log('not pagination');
+            if (e.target.href && !e.target.href.includes('?')) {
+                e.target.href += window.location.search;
+            }
+        }
+    } else {
+        console.log('not link');
+    }
+});
+</script>
+</body>
+</html>

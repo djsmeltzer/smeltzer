@@ -1,0 +1,47 @@
+$bgColor: #171717;
+
+$radius: 1em;
+$shadow-distance: 0.35em;
+
+body {
+    color: wheat;
+    background: $bgColor;
+    h1 {
+        color: white;
+        text-shadow: 0px 0px 7px orange, 0px 0px 4px yellow, 0px 0px 2px #fff, 0px 0px 0px red;
+    }
+}
+
+@mixin inset-shadow() {
+    box-shadow: (-$shadow-distance) (-$shadow-distance) 3*$shadow-distance #000, 
+                (-$shadow-distance) (-$shadow-distance) 3*$shadow-distance #000, 
+                $shadow-distance  $shadow-distance 3*$shadow-distance rgba(255,255,255,0.4),
+                inset 0em 0em 3*$shadow-distance rgba(0,0,0,0.75);
+}
+
+.div1 {
+    background: black;
+    border-radius: $radius;
+    @include inset-shadow();
+    position: absolute;
+    left: 20%;
+    top: 15%;
+    width: 20em;
+    height: 5em;
+    p {
+        color: limegreen;
+        text-shadow: 0px 0px 2px wheat;
+        font-family: monospace;
+    }
+}
+
+.div2 {
+    background:darkolivegreen;
+    border-radius: $radius;
+    @include inset-shadow();
+    position: absolute;
+    left: 60%;
+    top: 50%;
+    width: 10em;
+    height: 13em;
+}
