@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -10,9 +10,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 		<title>Smeltzer Family Web Site</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" type="image/png" href="https://smeltzer.net/images/icon16.png" sizes="16x16">  
-		<link rel="icon" type="image/png" href="https://smeltzer.net/images/icon32.png" sizes="32x32">  
-		<link rel="icon" type="image/png" href="https://smeltzer.net/images/icon96.png" sizes="96x96">  
+		<link rel="icon" type="image/png" href="https://smeltzer.net/images/s-icon-16.png" sizes="16x16">  
+		<link rel="icon" type="image/png" href="https://smeltzer.net/images/s-icon-32.png" sizes="32x32">  
+		<link rel="icon" type="image/png" href="https://smeltzer.net/images/s-icon-180.png" sizes="180x180">
+		<link rel="canonical" href="https://smeltzer.net/index.html">
+		<link rel="amphtml" href="https://smeltzer.net/index.amp.html">
+		<link rel="manifest" href="/manifest.json">
+		<meta name="theme-color" content="#800000">
 		<script type="application/ld+json">
 {
 	"@context": "http://schema.org",
@@ -40,6 +44,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	}
 }
 		</script>
+		<style>
+			body {
+  margin: 0em;
+  background: white;
+  font-family: 'Titillium Web', Arial, sans-serif;
+}
+header,
+footer,
+section {
+  display: block;
+  margin: 0em;
+}
+header {
+  background: maroon;
+  height: 1.5em;
+}
+footer {
+  background: darkslategray;
+  height: 2em;
+}
+.main {
+  background: white;
+  padding: 3em;
+}
+.main h1 {
+  color: darkslategray;
+}
+ul li {
+  margin: 1.5em auto;
+}
+		</style>
 	</head>
 	<body>
 		<!-- Google Tag Manager (noscript) -->
@@ -78,7 +113,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		</section>
 		<footer>
 		</footer>
-<link rel="stylesheet" type="text/css" href="css/styles.css">
-<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+<noscript id="deferred">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+</noscript>
+<script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/serviceworker.js').then(function(registration) {
+            console.log('worker registered');
+        },function (err) {
+            console.warn('worker registration failed: ', err);
+        });
+    });
+}
+var loadDeferredStyles = function() {
+	var addStylesNode = document.getElementById("deferred");
+	var replacement = document.createElement("div");
+	replacement.innerHTML = addStylesNode.textContent;
+	document.body.appendChild(replacement)
+	addStylesNode.parentElement.removeChild(addStylesNode);
+};
+var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+	window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+else window.addEventListener('load', loadDeferredStyles);
+</script>
 	</body>
 </html>

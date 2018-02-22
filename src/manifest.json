@@ -1,0 +1,20 @@
+{
+    "short_name": "Smeltzer.net",
+    "name": "Smeltzer Family Web Site",
+    "start_url": "index.html",
+    "theme_color": "#800000",
+    "background_color": "#800000",
+    "icons": [
+        {
+        "src": "/images/s-logo.png",
+        "type": "image/png",
+        "sizes": "512x512"
+        },
+        {
+        "src": "/images/s-icon-180.png",
+        "type": "image/png",
+        "sizes": "180x180"
+        }
+    ],
+    "display": "standalone"
+}

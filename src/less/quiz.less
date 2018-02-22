@@ -3,10 +3,14 @@
     left: 100%;
     position: absolute;
     text-align: center;
-    top: 0px;
+    top: 30px;
     transition: left 0.7s ease-out;
     transition-delay: 1.3s;
     width: 100%;
+}
+
+.question-container {
+    position: relative;
 }
 
 .current {
@@ -31,17 +35,23 @@
         color: white;
         opacity: 1;
         visibility: visible;
-
+        
         &:hover {
             background: maroon;
         }
     }
+    
 }
 
 .answerList {
     display: inline-block;
     max-width: 70%;
     position: relative;
+    &::after {
+        content: "";
+        display: block;
+        clear:both;
+    }
 }
 
 .answer {
@@ -63,6 +73,7 @@
         background: maroon;
         color: white;
     }
+
 }
 
 

@@ -43,7 +43,7 @@ gulp.task('build', ['less', 'sitemap', 'sass'], function() {
         .pipe(gulp.dest('dist/bubble'));
     gulp.src("src/images/**/*.{jpg,jpeg,gif,png}")
     .pipe(gulp.dest('dist/images'));
-    gulp.src("src/robots.txt")
+    gulp.src(["src/robots.txt","src/manifest.json", "src/.htaccess", "src/serviceworker.js"])
     .pipe(gulp.dest("dist"));
     return gulp.src("src/css/**/*.css")
     .pipe(nano())
@@ -61,7 +61,7 @@ gulp.task('sitemap', function() {
 })
 
 gulp.task('push:live', ['build'], function () {
-    return gulp.src("dist/**")
+    return gulp.src(["dist/**","dist/.htaccess"])
     .pipe(rsync({
         hostname: "smeltzer",
         username: "smeltzer",

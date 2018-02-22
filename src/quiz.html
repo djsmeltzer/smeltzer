@@ -4,6 +4,7 @@
 <head>
 	<title>Quiz Test</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<link rel="stylesheet" type="text/css" href="css/quiz.css">
     <script
   src="https://code.jquery.com/jquery-3.1.1.js"
@@ -24,27 +25,32 @@ $(document).ready(function () {
 </head>
 
 <body>
+<header></header>
+<div class="question-container">
 
-<div class="question">
-    <p>This is the question?</p>
-    <div class="answerList">
-    <div class="answer">Answer 1<sup>st</sup></div>
-    <div class="answer">Answer 2</div>
-    <div class="answer">Answer 3</div>
-    <div class="answer">Answer 4<sup>th</sup></div>
+    <div class="question">
+        <p>This is the question?</p>
+        <div class="answerList">
+            <div class="answer">Answer 1<sup>st</sup></div>
+            <div class="answer">Answer 2</div>
+            <div class="answer">Answer 3</div>
+            <div class="answer">Answer 4<sup>th</sup></div>
+        </div>
+    </div>
+    
+    <div class="question">
+        <p>This is question2?</p>
+        <div class="answerList">
+            <div class="answer">Answer 1</div>
+            <div class="answer">This answer is longer than the others</div>
+            <div class="answer">Answer the third</div>
+        </div>
     </div>
 </div>
 
-<div class="question">
-    <p>This is question2?</p>
-    <div class="answerList">
-    <div class="answer">Answer 1</div>
-    <div class="answer">This answer is longer than the others</div>
-    <div class="answer">Answer the third</div>
-    </div>
-</div>
-
-
+<footer>
+    <a href="/">Home</a>
+</footer>
 </body>
 
 </html>
