@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name='author' content='Daniel Smeltzer'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='theme-color' content='#333333'>
+    <title>Page title</title>
+    <link rel='manifest' href='/manifest.json'>
+    <style>
+        .video_container {
+            background: linear-gradient(to right, #cceecc 0%, #99cc99 100%);
+        }
+        video {
+            width: 400px;
+            height: 300px;
+            border: 2px solid brown;
+        }
+    </style>
+</head>
+<body>
+    This is my test of accessing the camera on IOS.<br>
+    <input type="file" accept="images/*">
+    <hr>
+    <div class="video_container">
+        <video></video>
+    </div>
+    <script>
+        navigator.getUserMedia({video:true},
+            function(mediaStream) {
+                let video = document.querySelector('video');
+                video.src = window.URL.createObjectURL(mediaStream);
+                video.play();
+            },
+            function (err) {
+                alert(err);
+            }
+        ); 
+    </script>
+</body>
+</html>

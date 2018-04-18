@@ -6,6 +6,10 @@ var autoprefix = require("gulp-autoprefixer");
 var browserSync = require("browser-sync");
 var rsync = require("gulp-rsync");
 var sitemap = require("gulp-sitemap");
+var imagemin = require("gulp-imagemin");
+var twig = require("gulp-twig");
+var cache = require("gulp-cache");
+var cachebust = require("gulp-cache-bust");
 
 gulp.task('less', function() {
     return gulp.src("src/less/**/*.less")
@@ -36,13 +40,9 @@ gulp.task("browserSync", function() {
     })
 });
 
-gulp.task('build', ['less', 'sitemap', 'sass'], function() {
-    gulp.src("src/**/*.{html,php}")
-    .pipe(gulp.dest('dist'));
+gulp.task('build', ['html', 'php', 'less', 'sass', 'images'], function() {
     gulp.src("src/bubble/**/*")
         .pipe(gulp.dest('dist/bubble'));
-    gulp.src("src/images/**/*.{jpg,jpeg,gif,png}")
-    .pipe(gulp.dest('dist/images'));
     gulp.src(["src/robots.txt","src/manifest.json", "src/.htaccess", "src/serviceworker.js"])
     .pipe(gulp.dest("dist"));
     return gulp.src("src/css/**/*.css")
@@ -50,8 +50,30 @@ gulp.task('build', ['less', 'sitemap', 'sass'], function() {
     .pipe(gulp.dest("dist/css"));
 })
 
-gulp.task('sitemap', function() {
-    gulp.src('src/**/*.html', {
+gulp.task('php', function() {
+    return gulp.src("src/**/*.php")
+        .pipe(gulp.dest("dist"))
+})
+
+gulp.task('template', function() {
+    return gulp.src('src/templates/*.html')
+        .pipe(twig())
+        .pipe(gulp.dest('dist'))
+})
+
+gulp.task('html:copy', ['template'], function() {
+    return gulp.src(['src/**/*.html', "!src/{templates,templates/**}"])
+        .pipe(gulp.dest("dist"))
+})
+
+gulp.task('html', ['template','html:copy'], function() {
+    return gulp.src('/dist/**/*.html')
+        .pipe(cachebust())
+        .pipe(gulp.dest('dist'));
+})
+
+gulp.task('sitemap', ['build'], function() {
+    return gulp.src(['dist/**/*.{html,php}'], {
         read: false
     })
     .pipe(sitemap({
@@ -60,7 +82,18 @@ gulp.task('sitemap', function() {
     .pipe(gulp.dest('dist'));
 })
 
-gulp.task('push:live', ['build'], function () {
+gulp.task('svg', function() {
+    return gulp.src("src/images/**/*.svg")
+        .pipe(gulp.dest('dist/images'));
+})
+
+gulp.task('images', ['svg'], function() {
+    return gulp.src("src/images/**/*.{jpg,jpeg,gif,png}")
+    .pipe(cache(imagemin()))
+    .pipe(gulp.dest('dist/images'));
+})
+
+gulp.task('push:live', ['sitemap'], function () {
     return gulp.src(["dist/**","dist/.htaccess"])
     .pipe(rsync({
         hostname: "smeltzer",

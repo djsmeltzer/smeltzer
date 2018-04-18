@@ -1,9 +1,32 @@
 @bgcolor: white;
+@headerColor: maroon;
+
+@AQUA: #7FDBFF;
+@BLUE: #0074D9;
+@NAVY: #001f3f;
+@TEAL:#39CCCC;
+@OLIVE: #3D9970;
+@GREEN: #2ECC40;
+@LIME: #01FF70;
+@YELLOW: #FFDC00;
+@ORANGE: #FF851B;
+@RED: #FF4136;
+@MAROON: #85144b;
+@FUCHSIA: #F012BE;
+@PURPLE: #B10DC9;
+@BLACK: #111111;
+@GRAY: #AAAAAA;
+@SILVER: #DDDDDD;
+
+
+@navBG: @NAVY;
+@navFG: @AQUA;
 
 body {
     margin: 0em;
     background: @bgcolor;
     font-family: 'Titillium Web', Arial, sans-serif;
+    overflow-x: hidden;
 }
 
 header, footer, section {
@@ -12,12 +35,87 @@ header, footer, section {
 }
 
 header {
-    background: maroon;
-    height: 1.5em;
+}
+
+.nav-toggle {
+    display: none;
+
+    & + label:before {
+        content: '\25ba';
+        display: inline-block;
+        color: @navBG;
+        z-index: 2;
+        transition: 350ms;
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 2em;
+        padding: 0.25em;
+    }
+    &:checked + label:before {
+        transform: rotate(-180deg);
+        color: @navFG;
+    }
+    &:checked + label + nav {
+        left: 0;
+    }
+}
+
+
+nav {
+    display: flex;
+    height: 100vh;
+    width: 10em;
+    flex-direction: column;
+    align-content: center;
+    background-color: @navBG;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: -11em;
+    transition: 350ms;
+
+    box-shadow: 0.2em 0 0.5em 0.2em rgba(0,0,0,0.25),
+                0.1em 0 0.25em 0.1em rgba(0,0,96,0.25);
+    
+    & div:first-child, 
+    & div:last-child {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+    }
+
+    .logo {
+        pointer-events: none;
+        color: @navFG;
+        svg {
+            padding-top: 3em;
+            margin-bottom: -3em;
+            height: 3em;
+            width: auto;
+            fill: @navFG;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: @navFG;
+        padding: 0.5em;
+        border-bottom: 1px solid @navFG;
+        text-align: center;
+        transition: 250ms;
+        &:last-of-type {
+            border-bottom: none;
+        }
+        &:hover {
+            color: white;
+        }
+    }
 }
 
 footer {
-    background: darkslategray;
+    background: @SILVER;
+    color: @NAVY;
     height: 2em;
     display: flex;
     justify-content: space-around;
@@ -76,5 +174,48 @@ ul li {
     &:hover {
         transform: translateY(1px);
         box-shadow: inset 0px 2px 3px #ccc;
+    }
+}
+
+@media only screen and (min-width: 30em) {
+    nav {
+        width: 100vw;
+        margin: 0;
+        height: auto;
+        flex-direction: row;
+        left: 0;
+        justify-content: center;
+        transition: 0s;
+        border-bottom: 1px solid @navFG;
+
+        & div:first-child,
+        & div:last-child {
+            justify-content: flex-start;
+        }
+
+        .logo {
+            padding: 0 0 0 1em;
+            svg {
+                padding-top: 0.15em;
+                margin-bottom: -0.5em;
+            }
+        }
+
+        a {
+            padding: 0.5em 1em;
+            border-bottom: none;
+            border-right: 1px solid @navFG;
+            line-height: 100%;
+            display: flex;
+            align-items: center;
+            &:last-of-type {
+                border-right: none;
+                text-align: left;
+            }
+        }
+    }
+
+    .nav-toggle + label:before {
+        display: none;
     }
 }

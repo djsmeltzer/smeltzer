@@ -1,0 +1,32 @@
+{% extends "layouts/default.html" %}
+{% set title= "Smeltzer Family Web Site" %}
+
+{% block content %}
+<h1>Things to do here....</h1>
+<p>Want to try deployment solutions.
+Will be interesting to see how some of this works.
+Not sure where to begin.  Should I try a gulp deploy
+using rsync or should I try using ShipIt?</p>
+<p>Shipit was attempted, but there were lots of problems.
+    They seemed to stem from trying to deploy from a Windows
+    system. The issues all seemed to revolve around
+    directory paths. I also tried doing some of this more 
+    manually, but so far have failed to create a symbolic
+    link on the remote system.
+</p>
+<p>Currently I am using an rsync deploy. One thing with this deploy
+    is I cannot use the archive flag for rsync as it messes up file
+    permissions.</p>
+<p>The process is getting better.
+</p>
+<p>Let's see if this file addition worked. <a href="test.html">This test page</a> should be available if this worked.</p>
+<a href="another_test.html">Another test</a>
+<ul>
+    <li><a href="buttons.html">Button design test</a></li>
+    <li><a href="quiz.html">Quiz test</a></li>
+    <li><a href="test.html">Test page 1</a></li>
+    <li><a href="another_test.html">Test page 2</a></li>
+    <li><a href="sequence.html">Sequence page</a></li>
+    <li><a href="bubble/index.html">Bubble Game</a></li>
+</ul>
+{% endblock %}

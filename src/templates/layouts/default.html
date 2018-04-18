@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name='author' content='Daniel Smeltzer'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='theme-color' content='#333333'>
+    <title>{{ title | default('Smeltzer.net') }}</title>
+    <link rel='manifest' href='/manifest.json'>
+    <link rel="icon" type="image/png" href="https://smeltzer.net/images/s-icon-16.png" sizes="16x16">  
+    <link rel="icon" type="image/png" href="https://smeltzer.net/images/s-icon-32.png" sizes="32x32">  
+    <link rel="icon" type="image/png" href="https://smeltzer.net/images/s-icon-180.png" sizes="180x180">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WMQPW9');</script>
+<!-- End Google Tag Manager -->
+<!-- critical styles -->
+    <style>
+                body {
+        margin: 0em;
+        background: white;
+        font-family: 'Titillium Web', Arial, sans-serif;
+    }
+    header,
+    footer,
+    section {
+        display: block;
+        margin: 0em;
+    }
+    header {
+        height: 1.5em;
+    }
+    footer {
+        background: darkslategray;
+        height: 2em;
+    }
+    .main {
+        background: white;
+        padding: 3em;
+    }
+    .main h1 {
+        color: darkslategray;
+    }
+    ul li {
+        margin: 1.5em auto;
+    }
+    </style>
+</head>
+<body>
+{% include "../partials/header.html" %}
+<section class="main">
+{% block content %}{% endblock %}
+</section>
+{% include "../partials/footer.html" %}
+<noscript id="deferred">
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+</noscript>
+<script>
+    // if ('serviceWorker' in navigator) {
+    //     window.addEventListener('load', function () {
+    //         navigator.serviceWorker.register('/serviceworker.js').then(function(registration) {
+    //             console.log('worker registered');
+    //         },function (err) {
+    //             console.warn('worker registration failed: ', err);
+    //         });
+    //     });
+    // }
+var loadDeferredStyles = function() {
+    var addStylesNode = document.getElementById("deferred");
+    var replacement = document.createElement("div");
+    replacement.innerHTML = addStylesNode.textContent;
+    document.body.appendChild(replacement)
+    addStylesNode.parentElement.removeChild(addStylesNode);
+};
+var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+    window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+else window.addEventListener('load', loadDeferredStyles);
+</script>
+</body>
+</html>
