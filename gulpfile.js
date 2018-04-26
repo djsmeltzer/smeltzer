@@ -10,6 +10,11 @@ var imagemin = require("gulp-imagemin");
 var twig = require("gulp-twig");
 var cache = require("gulp-cache");
 var cachebust = require("gulp-cache-bust");
+var del = require('del');
+
+gulp.task('clean', function() {
+    return del(['dist/**/*','dist/.htaccess'])
+})
 
 gulp.task('less', function() {
     return gulp.src("src/less/**/*.less")
@@ -40,14 +45,17 @@ gulp.task("browserSync", function() {
     })
 });
 
-gulp.task('build', ['html', 'php', 'less', 'sass', 'images'], function() {
-    gulp.src("src/bubble/**/*")
-        .pipe(gulp.dest('dist/bubble'));
+gulp.task('build', ['html', 'php', 'less', 'sass', 'images', 'bubble'], function() {
     gulp.src(["src/robots.txt","src/manifest.json", "src/.htaccess", "src/serviceworker.js"])
     .pipe(gulp.dest("dist"));
     return gulp.src("src/css/**/*.css")
     .pipe(nano())
     .pipe(gulp.dest("dist/css"));
+})
+
+gulp.task('bubble', function() {
+    return gulp.src("src/bubble/**/*")
+        .pipe(gulp.dest('dist/bubble'));
 })
 
 gulp.task('php', function() {
@@ -72,7 +80,7 @@ gulp.task('html', ['template','html:copy'], function() {
         .pipe(gulp.dest('dist'));
 })
 
-gulp.task('sitemap', ['build'], function() {
+gulp.task('sitemap', function() {
     return gulp.src(['dist/**/*.{html,php}'], {
         read: false
     })

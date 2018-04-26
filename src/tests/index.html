@@ -89,7 +89,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Want to try deployment solutions.
         Will be interesting to see how some of this works.
         Not sure where to begin.  Should I try a gulp deploy
-        using rsync or should I try using ShipIt?</p>
+		using rsync or should I try using ShipIt?</p>
+		
 		<p>Shipit was attempted, but there were lots of problems.
 			They seemed to stem from trying to deploy from a Windows
 			system. The issues all seemed to revolve around
@@ -100,31 +101,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<p>Currently I am using an rsync deploy. One thing with this deploy
 			is I cannot use the archive flag for rsync as it messes up file
 			permissions.</p>
-		<p>The process is getting better.
-		</p>
-		<p>Let's see if this file addition worked. <a href="test.html">This test page</a> should be available if this worked.</p>
-		<a href="another_test.html">Another test</a>
+		
 		<ul>
 			<li><a href="buttons.html">Button design test</a></li>
+			<li><a href="camera.html">Attempt to access the camera from an input control</a></li>
+			<li><a href="checker.html">Checker</a></li>
+			<li><a href="controls.html">Controls</a></li>
+			<li><a href="ds-test.html">Not sure what this one is</a></li>
+			<li><a href="events.html">Event listing style test</a></li>
+			<li><a href="linktest.html">Link test</a></li>
+			<li><a href="map.html">Map</a></li>
+			<li><a href="panda.html">Panda - from a book on CSS</a></li>
+			<li><a href="parse.html">Parse</a></li>
 			<li><a href="quiz.html">Quiz test</a></li>
-			<li><a href="test.html">Test page 1</a></li>
-			<li><a href="another_test.html">Test page 2</a></li>
-			<li><a href="sequence.html">Sequence page</a></li>
-			<li><a href="bubble/index.html">Bubble Game</a></li>
-			<li><a href="twig.html">Twig test page</a></li>
-			<li><a href="index-twig.html">Twig index</a></li>
+			<li><a href="quiz2.html">Quiz test 2</a></li>
+			<li><a href="sequence.html">Sequence page, used to illustrate the answer to a puzzle</a></li>
+			<li><a href="test-sass.html">Style tests with SASS</a></li>
+			<li><a href="test2.html">Test 2 - great name, eh?</a></li>
+			<li><a href="unload.html">Unload</a></li>
+			<li><a href="vue.html">Vue</a></li>
+			<li><a href="/bubble/index.html">Bubble Game from Javascript game programming book, unfinished</a></li>
+			<li><a href="/twig.html">Twig template test page</a></li>
+
 		</ul>
 		</section>
 		<footer>
 		</footer>
 <noscript id="deferred">
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link rel="stylesheet" type="text/css" href="/css/styles.css">
 	<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 </noscript>
 <script>
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-        navigator.serviceWorker.register('/serviceworker.js').then(function(registration) {
+        navigator.serviceWorker.register('/sw.js').then(function(registration) {
             console.log('worker registered');
         },function (err) {
             console.warn('worker registration failed: ', err);
