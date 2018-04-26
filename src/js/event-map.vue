@@ -2,7 +2,7 @@
     <div class="google-map" :id="mapName"></div>
 </template>
 
-<<script>
+<script>
 export default {
   name: 'event-map',
   props: ['name'],
