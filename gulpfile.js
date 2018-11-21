@@ -45,7 +45,7 @@ gulp.task("browserSync", function() {
     })
 });
 
-gulp.task('build', ['html', 'php', 'less', 'sass', 'images', 'bubble'], function() {
+gulp.task('build', ['html', 'php', 'less', 'sass', 'images', 'bubble', 'quiz'], function() {
     gulp.src(["src/robots.txt","src/manifest.json", "src/.htaccess", "src/serviceworker.js"])
     .pipe(gulp.dest("dist"));
     return gulp.src("src/css/**/*.css")
@@ -56,6 +56,11 @@ gulp.task('build', ['html', 'php', 'less', 'sass', 'images', 'bubble'], function
 gulp.task('bubble', function() {
     return gulp.src("src/bubble/**/*")
         .pipe(gulp.dest('dist/bubble'));
+})
+
+gulp.task('quiz', function() {
+    return gulp.src("src/quiz/**/*")
+        .pipe(gulp.dest('dist/quiz'));
 })
 
 gulp.task('php', function() {
