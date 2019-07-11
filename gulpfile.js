@@ -1,7 +1,6 @@
 var gulp = require("gulp");
 var less = require("gulp-less");
 var sass = require("gulp-sass");
-var nano = require("gulp-cssnano");
 var autoprefix = require("gulp-autoprefixer");
 var browserSync = require("browser-sync");
 var rsync = require("gulp-rsync");
@@ -30,14 +29,14 @@ gulp.task('sass', function() {
         .pipe(gulp.dest("src/css"));
 });
 
-gulp.task("watch", ["browserSync", "less", "sass"], function() {
+gulp.task("watch", gulp.series("browserSync", "less", "sass", function() {
     gulp.watch("src/less/**/*.less", ['less']);
     gulp.watch("src/sass/**/*.scss", ['sass']);
-    gulp.watch("src/**/*.{html,css,js,php}", browserSync.reload);
-})
+    return gulp.watch("src/**/*.{html,css,js,php}", browserSync.reload);
+}))
 
 gulp.task("browserSync", function() {
-    browserSync.init({
+    return browserSync.init({
         server: {
             baseDir: 'src',
             index: 'test-sass.html'
@@ -49,7 +48,6 @@ gulp.task('build', ['html', 'php', 'less', 'sass', 'images', 'bubble', 'quiz'], 
     gulp.src(["src/robots.txt","src/manifest.json", "src/.htaccess", "src/serviceworker.js"])
     .pipe(gulp.dest("dist"));
     return gulp.src("src/css/**/*.css")
-    .pipe(nano())
     .pipe(gulp.dest("dist/css"));
 })
 
@@ -74,16 +72,16 @@ gulp.task('template', function() {
         .pipe(gulp.dest('dist'))
 })
 
-gulp.task('html:copy', ['template'], function() {
+gulp.task('html:copy', gulp.series('template', function() {
     return gulp.src(['src/**/*.html', "!src/{templates,templates/**}"])
         .pipe(gulp.dest("dist"))
-})
+}))
 
-gulp.task('html', ['template','html:copy'], function() {
+gulp.task('html', gulp.series('template','html:copy', function() {
     return gulp.src('/dist/**/*.html')
         .pipe(cachebust())
         .pipe(gulp.dest('dist'));
-})
+}))
 
 gulp.task('sitemap', function() {
     return gulp.src(['dist/**/*.{html,php}'], {
@@ -100,13 +98,13 @@ gulp.task('svg', function() {
         .pipe(gulp.dest('dist/images'));
 })
 
-gulp.task('images', ['svg'], function() {
+gulp.task('images', gulp.series('svg', function() {
     return gulp.src("src/images/**/*.{jpg,jpeg,gif,png}")
     .pipe(cache(imagemin()))
     .pipe(gulp.dest('dist/images'));
-})
+}))
 
-gulp.task('push:live', ['sitemap'], function () {
+gulp.task('push:live', gulp.series('sitemap', function () {
     return gulp.src(["dist/**","dist/.htaccess"])
     .pipe(rsync({
         hostname: "smeltzer",
@@ -119,4 +117,4 @@ gulp.task('push:live', ['sitemap'], function () {
         verbose: true,
         chmod: "Du=rxw,Dgo=rx,Fu=rw,Fog=r"
     }));
-});
+}));
