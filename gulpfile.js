@@ -53,6 +53,11 @@ gulp.task('php', () => {
     .pipe(gulp.dest("dist"))
 })
 
+gulp.task('htaccess', () => {
+    return gulp.src('src/.htaccess')
+    .pipe(gulp.dest("dist"))
+})
+
 gulp.task('template', () => {
     return gulp.src('src/templates/*.html')
     .pipe(twig())
@@ -97,7 +102,7 @@ gulp.task("watch", gulp.series("browserSync", "less", "sass", () => {
     return gulp.watch("src/**/*.{html,css,js,php}", browserSync.reload)
 }))
 
-gulp.task('build', gulp.series('html', 'php', 'less', 'sass', 'images', 'bubble', 'quiz', () => {
+gulp.task('build', gulp.series('html', 'php', 'htaccess', 'less', 'sass', 'images', 'bubble', 'quiz', () => {
     gulp.src(["src/robots.txt","src/manifest.json", "src/.htaccess", "src/serviceworker.js"])
     .pipe(gulp.dest("dist"));
     return gulp.src("src/css/**/*.css")
